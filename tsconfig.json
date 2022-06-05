@@ -3,6 +3,13 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "paths": {
+      "@@app/*": ["src/app/*"],
+      "@@shared/*": ["src/app/shared/*"],
+      "@@store/*": ["src/app/store/*"],
+      "@@core/*": ["src/app/core/*"],
+      "@@coffee-product-list/*": ["src/app/pages/coffee-product-list/*"],
+    },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,

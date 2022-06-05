@@ -1,13 +1,12 @@
-import {APP_BASE_HREF} from '@angular/common';
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import {CommonModule} from '@angular/common';
+import {HttpClientModule} from '@angular/common/http';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {StoreRouterConnectingModule} from '@ngrx/router-store';
+import {AppReduxModule} from '@@app/app-redux.module';
+import {AppRoutingModule} from '@@app/app-routing.module';
+import {AppComponent} from '@@app/app.component';
+import {AppCoffeeProductListModule} from '@@coffee-product-list/coffee-product-list.module';
 
 @NgModule({
   declarations: [
@@ -15,13 +14,14 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    CommonModule,
     AppRoutingModule,
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    AppReduxModule,
+    AppCoffeeProductListModule,
     StoreRouterConnectingModule.forRoot()
   ],
-  providers: [{provide: APP_BASE_HREF, useValue: '/coffee-products'}],
+  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

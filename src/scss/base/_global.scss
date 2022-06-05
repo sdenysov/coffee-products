@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import "abstracts/colors";
+
+body {
+  font-family: "Roboto", sans-serif;
+  color: $color-text;
+  background-color: $color-main-bg;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.page-container {
+  min-height: 100vh;
+  margin-bottom: -6rem;
+  padding-bottom: 6rem;
+}

@@ -1,10 +1,20 @@
+import {UrlSegments} from '@@core/config/url-segments';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {AppComponent} from './app.component';
+import {CoffeeProductsInitialDataResolver} from './resolvers/coffee-products-initial-data-resolver';
 
 const routes: Routes = [
-  {path: '**', redirectTo: '/coffee-products'},
-  {path: 'coffee-products', component: AppComponent},
+  {path: '**', redirectTo: `${UrlSegments.contextPath}/list`},
+  {
+    path: UrlSegments.contextPath,
+    resolve: {initialData: CoffeeProductsInitialDataResolver},
+    children: [
+      {
+        path: 'list',
+        loadChildren: () => import('./pages/coffee-product-list/coffee-product-list.module').then(m => m.AppCoffeeProductListModule)
+      }
+    ]
+  },
 ];
 
 @NgModule({

@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+@import "abstracts/colors";
+@import "abstracts/variables";
+
+.product {
+  min-width: 10rem;
+  max-width: 18rem;
+  min-height: 23rem;
+  margin: 0 auto 2.6rem;
+  border: 0.1rem solid $color-gray-lightest;
+  border-radius: $border-radius-base;
+  padding: 0 1rem;
+  box-shadow: $box-shadow;
+  background-color: $color-light;
+
+  &:hover {
+    .more-details {
+      &::before {
+        transform: scale(1.2,1.2) rotate(5deg);
+      }
+
+      .more-details-btn {
+        bottom: 2rem;
+      }
+    }
+  }
+
+  .more-details {
+    position: relative;
+    height: 14rem;
+    max-height: 14rem;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    z-index: 50;
+
+    &::before {
+      position: absolute;
+      content: "";
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      transition: all 0.3s;
+      background: url("~src/assets/images/coffee.jpg") no-repeat center;
+      background-size: contain;
+    }
+
+    .more-details-btn {
+      position: absolute;
+      bottom: -3rem;
+      left: 0.2rem;
+      transition: bottom 0.5s, opacity 0.5s;
+
+      &:not(:hover) {
+        background-color: $color-light;
+      }
+    }
+  }
+}
+
+.details {
+  &__title {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+  }
+
+  &__producer {
+    font-weight: $font-weight-normal;
+  }
+
+  &__intensifier {
+    font-weight: $font-weight-normal;
+
+    :last-child {
+      margin-left: 0.5rem;
+    }
+  }
+}
