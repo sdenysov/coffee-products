@@ -1,0 +1,51 @@
+@import "../../scss/variables";
+
+.pagination {
+  margin: 0;
+  font-size: 1.4rem;
+
+  li {
+    &:first-child > a {
+      border-top-left-radius: $border-radius;
+      border-bottom-left-radius: $border-radius;
+    }
+
+    &:last-child > a {
+      border-top-right-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
+    }
+  }
+
+  .page-item {
+    .page-link {
+      padding: 0.2rem 0.8rem;
+      color: $color-link-text;
+      height: $page-pagination-height;
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+
+    &.active {
+      .page-link {
+        background: $color-active-link-background;
+        color: $color-active-link-text;
+        border: 1px solid $color-border;
+      }
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      color: $color-disabled-link-text;
+
+      .page-link {
+        color: $color-disabled-link-text;
+
+        &:hover {
+          color: $color-disabled-link-text;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+<div class="btn-group page-size" dropdown>
+  <button id="button-animated" dropdownToggle type="button" class="btn dropdown-toggle page-size__btn"
+          aria-controls="dropdown-animated">
+    {{pageSize}} <span class="caret"></span>
+  </button>
+  <ul id="dropdown-animated" *dropdownMenu class="page-size__dropdown dropdown-menu"
+      role="menu" aria-labelledby="button-animated">
+    <li *ngFor="let pageSize of pageSizes" (click)="changePageSizeAndHideDropdown(pageSize)">
+      <span>{{pageSize}}</span>
+    </li>
+  </ul>
+</div>

@@ -10,4 +10,9 @@
     font-weight: $font-weight-normal;
     color: $color-gray-dark;
   }
+
+  &__pagination {
+    display: block;
+    margin: 0 auto;
+  }
 }

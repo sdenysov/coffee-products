@@ -1,0 +1,10 @@
+.list-pagination {
+  margin: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  .pagination {
+    margin-bottom: 1rem;
+  }
+}

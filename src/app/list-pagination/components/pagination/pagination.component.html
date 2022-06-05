@@ -1,0 +1,12 @@
+<pagination [boundaryLinks]="true"
+            [disabled]="disabled"
+            [totalItems]="totalItems"
+            [maxSize]="maxSize"
+            [itemsPerPage]="itemsPerPage"
+            [firstText]="firstText"
+            [lastText]="lastText"
+            [nextText]="nextText"
+            [previousText]="previousText"
+            [ngModel]="pageNumber"
+            (pageChanged)="onPageChanged($event)">
+</pagination>

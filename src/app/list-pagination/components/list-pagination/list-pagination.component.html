@@ -1,0 +1,13 @@
+<div class="list-pagination">
+  <app-pagination *ngIf="isPaginationVisible()"
+                  class="pagination"
+                  [totalItems]="totalItems"
+                  [itemsPerPage]="itemsPerPage"
+                  [pageNumber]="pageNumber"
+                  (pageChanged)="pageChanged.emit($event)">
+  </app-pagination>
+  <app-page-size [pageSize]="pageSize"
+                 [pageSizes]="pageSizes"
+                 (pageSizeChanged)="pageSizeChange.emit($event)">
+  </app-page-size>
+</div>

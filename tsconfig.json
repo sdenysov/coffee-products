@@ -9,6 +9,7 @@
       "@@store/*": ["src/app/store/*"],
       "@@core/*": ["src/app/core/*"],
       "@@coffee-product-list/*": ["src/app/pages/coffee-product-list/*"],
+      "@@list-pagination/*": ["src/app/list-pagination/*"],
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

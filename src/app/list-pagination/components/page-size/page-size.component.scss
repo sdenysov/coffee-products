@@ -1,0 +1,36 @@
+@import "../../scss/variables";
+
+.page-size {
+  position: relative;
+  display: inline-block;
+}
+
+.page-size__btn {
+  padding: 7px 13px;
+  height: $page-size-height;
+  border-radius: $border-radius;
+  font-size: 1.3rem;
+  border: 1px solid $color-page-size-border;
+  color: $color-page-size-text;
+
+  &:focus {
+    box-shadow: none;
+    outline: none;
+  }
+}
+
+.page-size__dropdown {
+  margin-top: 8px;
+  min-width: 5rem;
+
+  li {
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    color: $color-page-size-text;
+
+    &:hover {
+      background-color: $color-active-link-background;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+@import "abstracts/colors";
+@import "abstracts/variables";
+
+$color-border: $color-gray-light !default;
+$color-page-size-border: $color-gray-lightest !default;
+$color-page-size-text: $color-text !default;
+$color-link-text: $color-gray-dark !default;
+$color-active-link-background: $color-gray-lightest !default;
+$color-active-link-text: $color-text !default;
+$color-disabled-link-text: $color-text !default;
+
+$page-size-height: 2.8rem;
+$page-pagination-height: 2.8rem;
+$border-radius: 3px !default;
