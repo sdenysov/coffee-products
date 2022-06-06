@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 import {UntilDestroy} from '@ngneat/until-destroy';
 import {CoffeeProduct} from '@@shared/models/coffee-product';
 
@@ -13,5 +13,6 @@ import {CoffeeProduct} from '@@shared/models/coffee-product';
 export class CoffeeProductListItemComponent {
 
   @Input() coffeeProduct!: CoffeeProduct;
+  @Output() showCoffeeProductDetails: EventEmitter<string> = new EventEmitter<string>();
 
 }

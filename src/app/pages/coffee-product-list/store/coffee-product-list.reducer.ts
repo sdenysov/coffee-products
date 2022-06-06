@@ -2,7 +2,7 @@ import {CoffeeProductListState} from '@@coffee-product-list/models/coffee-produc
 import {CoffeeProductListActions} from '@@coffee-product-list/store/coffee-product-list.actions';
 import {createReducer, on} from '@ngrx/store';
 
-const initialState: CoffeeProductListState = {
+export const initialState: CoffeeProductListState = {
   paginationVisible: false,
   pageProducts: [],
   limit: 10,

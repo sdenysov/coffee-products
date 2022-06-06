@@ -1,5 +1,6 @@
 import {CoffeeProductListState} from '@@coffee-product-list/models/coffee-product-list-state';
 import {CoffeeProductListReduxFacade} from '@@coffee-product-list/store/coffee-product-list-redux.facade';
+import {CoffeeProductsNavigationService} from '@@router/services/coffee-products-navigation.service';
 import {CoffeeProduct} from '@@shared/models/coffee-product';
 import {CoffeeProductsReduxFacade} from '@@store/coffee-products-redux.facade';
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
@@ -25,6 +26,7 @@ export class CoffeeProductListComponent implements OnInit {
 
   constructor(private coffeeProductsReduxFacade: CoffeeProductsReduxFacade,
               private coffeeProductListReduxFacade: CoffeeProductListReduxFacade,
+              private coffeeProductsNavigationService: CoffeeProductsNavigationService,
               private cdr: ChangeDetectorRef) {
   }
 
@@ -43,6 +45,10 @@ export class CoffeeProductListComponent implements OnInit {
 
   trackByProductId(index: number, product: CoffeeProduct) {
     return product.id;
+  }
+
+  goToCoffeeProductDetails(productId: string): void {
+    this.coffeeProductsNavigationService.goToProductDetails(productId);
   }
 
   private initCoffeeProductListStateSub(): void {

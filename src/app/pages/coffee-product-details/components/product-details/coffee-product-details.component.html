@@ -1,0 +1,28 @@
+<section class="container" *ngIf="loaded">
+  <div class="row">
+    <div class="col-xs-4 col-sm-3 col-md-3 coffee-img">
+      <img appImageName="coffee.jpg"/>
+    </div>
+    <div class="col-xs-8 col-sm-9 col-md-9 product-details">
+      <h2 class="product-details__title">{{coffeeProduct.blend_name}}</h2>
+      <h5 class="product-details__intensifier">
+        <span>Intensifier:</span>
+        <span class="badge rounded-pill bg-primary">{{coffeeProduct.intensifier}}</span>
+      </h5>
+      <h5 class="details__producer">Made in: {{coffeeProduct.origin}}</h5>
+      <h5 class="product-details__notes">
+        <span>Notes:</span>
+        <span *ngFor="let note of coffeeNotes" class="badge rounded-pill bg-info">{{note}}</span>
+      </h5>
+      <h5 class="details__producer">Variety: {{coffeeProduct.variety}}</h5>
+      <h5>Description:</h5>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
+        a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+        Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
+        of Lorem Ipsum</p>
+      <button class="btn btn-outline-secondary" (click)="goToProductList()">Go to product list</button>
+    </div>
+  </div>
+</section>

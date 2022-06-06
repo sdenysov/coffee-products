@@ -4,6 +4,7 @@ import {COFFEE_PRODUCTS_STORE_KEY} from '@@store/coffee-products-store.config';
 import {Injectable} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 import {CoffeeProductsActions} from './coffee-products.actions';
 import {CoffeeProductsSelectors} from './coffee-products.selectors';
 
@@ -16,5 +17,11 @@ export class CoffeeProductsReduxFacade {
 
   fetchCoffeeProducts(limit: number) {
     this.store.dispatch(CoffeeProductsActions.fetch({limit}));
+  }
+
+  getCoffeeProductByUid$(uid: string): Observable<CoffeeProduct | undefined> {
+    return this.coffeeProducts$.pipe(map((coffeeProducts: CoffeeProduct[]) => {
+      return coffeeProducts.find(coffeeProduct => coffeeProduct?.uid === uid);
+    }));
   }
 }

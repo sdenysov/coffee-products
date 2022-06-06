@@ -1,6 +1,6 @@
 <div id="product-1" class="product">
   <div class="more-details">
-    <button class="btn btn-outline-secondary more-details-btn">
+    <button class="btn btn-outline-secondary more-details-btn" (click)="showCoffeeProductDetails.emit(coffeeProduct.uid)">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
            viewBox="0 0 16 16">
         <path

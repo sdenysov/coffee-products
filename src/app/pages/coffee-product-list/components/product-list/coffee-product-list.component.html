@@ -9,7 +9,10 @@
     </div>
     <div class="row">
       <div *ngFor="let coffeeProduct of coffeeProducts; trackBy: trackByProductId" class="col-sm-12 col-lg-6 col-xl-4">
-        <app-coffee-product-list-item [coffeeProduct]="coffeeProduct"></app-coffee-product-list-item>
+        <app-coffee-product-list-item
+          [coffeeProduct]="coffeeProduct"
+          (showCoffeeProductDetails)="goToCoffeeProductDetails($event)">
+        </app-coffee-product-list-item>
       </div>
     </div>
     <div *ngIf="productListPaginationVisible" class="row">
