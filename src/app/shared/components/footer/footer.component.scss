@@ -1,0 +1,11 @@
+@import "abstracts/colors";
+@import "abstracts/variables";
+
+.footer {
+  display: flex;
+  align-items: center;
+  height: 4rem;
+  background-color: $color-blue-light;
+  color: $color-text-lightest;
+  font-size: $font-size-md;
+}

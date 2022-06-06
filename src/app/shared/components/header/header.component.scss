@@ -1,0 +1,15 @@
+@import "abstracts/colors";
+@import "abstracts/variables";
+
+.header {
+  display: flex;
+  align-items: center;
+  min-height: 4rem;
+  background-color: $color-blue-light;
+
+  .header-brand {
+    color: $color-text-lightest;
+    text-decoration: none;
+    font-size: $font-size-xl;
+  }
+}

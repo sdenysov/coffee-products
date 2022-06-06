@@ -6,6 +6,7 @@ import {AppCoffeeProductListModule} from '@@coffee-product-list/coffee-product-l
 import {DependencyInjectorService} from '@@core/services/dependency-injector.service';
 import {AppListPaginationModule} from '@@list-pagination/app-list-pagination.module';
 import {AppRouterModule} from '@@router/app-router.module';
+import {AppSharedModule} from '@@shared/app-shared.module';
 import {AppUiLockerModule} from '@@ui-locker/ui-locker.module';
 import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
@@ -28,7 +29,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     AppRouterModule,
     AppListPaginationModule,
     AppCoffeeProductListModule,
-    AppCoffeeProductDetailsModule
+    AppCoffeeProductDetailsModule,
+    AppSharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
