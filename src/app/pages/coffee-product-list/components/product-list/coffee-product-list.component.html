@@ -18,12 +18,12 @@
     <div *ngIf="productListPaginationVisible" class="row">
       <div class="col-sm-12">
         <app-list-pagination class="section-products__pagination"
-                         [totalItems]="totalProductsCount"
-                         [itemsPerPage]="productsLimit"
-                         [pageNumber]="pageNumber"
-                         [pageSize]="productsLimit"
-                         (pageChanged)="onPageChanged($event)"
-                         (pageSizeChange)="onPageSizeChanged($event)">
+                             [totalItems]="totalProductsCount"
+                             [itemsPerPage]="productsLimit"
+                             [pageSize]="productsLimit"
+                             [pageNumber]="pageNumber"
+                             (pageChanged)="onPageChanged($event)"
+                             (pageSizeChange)="onPageSizeChanged($event)">
         </app-list-pagination>
       </div>
     </div>

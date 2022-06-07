@@ -13,6 +13,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AlertModule} from 'ngx-bootstrap/alert';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     AppListPaginationModule,
     AppCoffeeProductListModule,
     AppCoffeeProductDetailsModule,
-    AppSharedModule
+    AppSharedModule,
+    AlertModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

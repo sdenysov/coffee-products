@@ -3,7 +3,7 @@ import {CoffeeProductListReduxFacade} from '@@coffee-product-list/store/coffee-p
 import {CoffeeProductsNavigationService} from '@@router/services/coffee-products-navigation.service';
 import {CoffeeProduct} from '@@shared/models/coffee-product';
 import {CoffeeProductsReduxFacade} from '@@store/coffee-products-redux.facade';
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 import {PageChangedEvent} from 'ngx-bootstrap/pagination/pagination.component';
 import {filter} from 'rxjs';
@@ -15,10 +15,9 @@ import {filter} from 'rxjs';
   styleUrls: ['./coffee-product-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CoffeeProductListComponent implements OnInit {
+export class CoffeeProductListComponent implements OnInit, OnDestroy {
 
   public coffeeProducts!: CoffeeProduct[];
-  public allCoffeeProducts!: CoffeeProduct[];
   public productsLimit!: number;
   public pageNumber!: number;
   public totalProductsCount!: number;
@@ -36,11 +35,11 @@ export class CoffeeProductListComponent implements OnInit {
   }
 
   onPageChanged(event: PageChangedEvent): void {
-    this.coffeeProductListReduxFacade.updateListPageData(event.page, this.allCoffeeProducts);
+    this.coffeeProductListReduxFacade.updateListPageData(event.page);
   }
 
   onPageSizeChanged(pageSize: number): void {
-    this.coffeeProductListReduxFacade.updateListPageSize(pageSize, this.allCoffeeProducts);
+    this.coffeeProductListReduxFacade.updateListPageSize(pageSize);
   }
 
   trackByProductId(index: number, product: CoffeeProduct) {
@@ -49,6 +48,10 @@ export class CoffeeProductListComponent implements OnInit {
 
   goToCoffeeProductDetails(productId: string): void {
     this.coffeeProductsNavigationService.goToProductDetails(productId);
+  }
+
+  ngOnDestroy(): void {
+    this.coffeeProductListReduxFacade.resetState();
   }
 
   private initCoffeeProductListStateSub(): void {
@@ -73,9 +76,6 @@ export class CoffeeProductListComponent implements OnInit {
         filter((products: CoffeeProduct[]) => products.length > 0),
         untilDestroyed(this)
       )
-      .subscribe(products => {
-        this.allCoffeeProducts = products;
-        this.coffeeProductListReduxFacade.setInitialData(products);
-      });
+      .subscribe(products => this.coffeeProductListReduxFacade.setInitialData(products));
   }
 }

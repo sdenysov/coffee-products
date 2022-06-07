@@ -1,5 +1,8 @@
 <app-full-screen-locker></app-full-screen-locker>
 <app-header></app-header>
+<alert *ngIf="errorDataFetchVisible" type="danger" [dismissOnTimeout]="2000" (onClosed)="errorDataFetchVisible = false">
+  Oops! Error while data loading! Try again later!
+</alert>
 <main class="page-container">
   <div class="container">
     <div class="row">

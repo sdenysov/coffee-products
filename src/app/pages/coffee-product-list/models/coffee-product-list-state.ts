@@ -6,4 +6,5 @@ export interface CoffeeProductListState {
   limit: number;
   pageNumber: number;
   totalProductsCount: number;
+  totalProducts: CoffeeProduct[];
 }

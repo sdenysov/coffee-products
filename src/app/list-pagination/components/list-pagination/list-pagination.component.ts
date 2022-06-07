@@ -10,8 +10,8 @@ import {PageChangedEvent} from 'ngx-bootstrap/pagination/pagination.component';
 export class ListPaginationComponent {
 
   @Input() totalItems!: number;
-  @Input() itemsPerPage!: number;
   @Input() pageNumber!: number;
+  @Input() itemsPerPage!: number;
   @Input() pageSize!: number;
   @Input() pageSizes!: number[];
   @Output() pageChanged: EventEmitter<PageChangedEvent>;

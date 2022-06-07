@@ -7,6 +7,7 @@
             [lastText]="lastText"
             [nextText]="nextText"
             [previousText]="previousText"
-            [ngModel]="pageNumber"
-            (pageChanged)="onPageChanged($event)">
+            [(ngModel)]="pageNumber"
+            (pageChanged)="onPageChanged($event)"
+            (numPages)="onNumPagesChanged($event)">
 </pagination>

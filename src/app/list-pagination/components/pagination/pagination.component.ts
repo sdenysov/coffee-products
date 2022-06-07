@@ -1,6 +1,6 @@
 import {PaginationConfig} from '@@app/list-pagination/pagination.config';
 import {
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -19,7 +19,10 @@ import {PageChangedEvent} from 'ngx-bootstrap/pagination/pagination.component';
 })
 export class PaginationComponent implements OnInit {
 
+  prevItemsPerPage!: number;
+  prevPageNumber!: number;
   maxSize!: number;
+  totalPageCount!: number;
   @Input() disabled!: boolean;
   @Input() totalItems!: number;
   @Input() firstText!: string;
@@ -30,7 +33,7 @@ export class PaginationComponent implements OnInit {
   @Input() pageNumber!: number;
   @Output() pageChanged: EventEmitter<PageChangedEvent>;
 
-  constructor(private config: PaginationConfig) {
+  constructor(private config: PaginationConfig, private cdr: ChangeDetectorRef) {
     this.pageChanged = new EventEmitter<PageChangedEvent>();
   }
 
@@ -41,9 +44,31 @@ export class PaginationComponent implements OnInit {
     this.nextText = typeof this.nextText !== 'undefined' ? this.nextText : this.config.nextText;
     this.lastText = typeof this.lastText !== 'undefined' ? this.lastText : this.config.lastText;
     this.itemsPerPage = typeof this.itemsPerPage !== 'undefined' ? this.itemsPerPage : this.config.itemsPerPage;
+    this.prevItemsPerPage = this.itemsPerPage;
   }
 
   onPageChanged(event: PageChangedEvent) {
-    this.pageChanged.emit(event);
+    if (this.prevPageNumber > this.totalPageCount) {
+      this.prevPageNumber = event.page;
+      return;
+    }
+    if (event.page !== this.pageNumber && event.itemsPerPage === this.prevItemsPerPage) {
+      this.pageChanged.emit(event);
+    }
+    this.prevPageNumber = event.page;
+  }
+
+  onNumPagesChanged(pageCount: number): void {
+    this.totalPageCount = pageCount;
+    const lastPrevPageItem = Math.min(this.totalItems, this.prevItemsPerPage * this.pageNumber);
+    const newPageNumber = Math.ceil(lastPrevPageItem / this.itemsPerPage);
+    if (pageCount > newPageNumber) {
+      this.pageNumber = newPageNumber;
+    }
+    if (pageCount === newPageNumber) {
+      this.pageChanged.emit({page: newPageNumber, itemsPerPage: this.itemsPerPage});
+    }
+    this.prevItemsPerPage = this.itemsPerPage;
+    this.cdr.detectChanges();
   }
 }

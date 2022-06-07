@@ -9,10 +9,10 @@ import {PaginationModule} from 'ngx-bootstrap/pagination';
 
 @NgModule({
 	imports: [
+    FormsModule,
 		CommonModule,
 		PaginationModule.forRoot(),
-		BsDropdownModule.forRoot(),
-		FormsModule
+		BsDropdownModule.forRoot()
 	],
   exports: [
     PageSizeComponent,

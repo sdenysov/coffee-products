@@ -23,11 +23,15 @@ export class CoffeeProductListReduxFacade {
     this.store.dispatch(CoffeeProductListActions.setInitialData({products}));
   }
 
-  updateListPageData(pageNumber: number, products: CoffeeProduct[]): void {
-    this.store.dispatch(CoffeeProductListActions.updateListPageData({pageNumber, products}));
+  updateListPageData(pageNumber: number): void {
+    this.store.dispatch(CoffeeProductListActions.updateListPageData({pageNumber}));
   }
 
-  updateListPageSize(pageSize: number, products: CoffeeProduct[]): void {
-    this.store.dispatch(CoffeeProductListActions.updateListPageSize({pageSize, products}));
+  updateListPageSize(pageSize: number): void {
+    this.store.dispatch(CoffeeProductListActions.updateListPageSize({pageSize}));
+  }
+
+  resetState(): void {
+    this.store.dispatch(CoffeeProductListActions.resetState());
   }
 }

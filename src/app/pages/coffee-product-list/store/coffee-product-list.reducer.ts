@@ -5,6 +5,7 @@ import {createReducer, on} from '@ngrx/store';
 export const initialState: CoffeeProductListState = {
   paginationVisible: false,
   pageProducts: [],
+  totalProducts: [],
   limit: 10,
   pageNumber: 1,
   totalProductsCount: 0
@@ -18,25 +19,27 @@ export const coffeeProductListReducer = createReducer(
       ...state,
       paginationVisible: products.length > limit,
       totalProductsCount: products.length,
-      pageProducts: products.slice(pageNumber - 1, limit)
+      pageProducts: products.slice(pageNumber - 1, limit),
+      totalProducts: products
     }
   }),
-  on(CoffeeProductListActions.updateListPageData, (state, {pageNumber, products}) => {
-    const {limit} = state;
+  on(CoffeeProductListActions.updateListPageData, (state, {pageNumber}) => {
+    const {limit, totalProducts} = state;
     const startItem = (pageNumber - 1) * limit;
     const endItem = limit * pageNumber;
     return {
       ...state,
       pageNumber,
-      pageProducts: products.slice(startItem, endItem)
+      pageProducts: totalProducts.slice(startItem, endItem)
     }
   }),
-  on(CoffeeProductListActions.updateListPageSize, (state, {pageSize, products}) => {
+  on(CoffeeProductListActions.updateListPageSize, (state, {pageSize}) => {
     return {
       ...state,
       limit: pageSize,
-      pageNumber: 1,
-      pageProducts: products.slice(0, pageSize)
+      pageNumber: pageSize === state.totalProductsCount ? 1 : state.pageNumber,
+      pageProducts: state.totalProducts.slice(0, pageSize)
     }
-  })
+  }),
+  on(CoffeeProductListActions.resetState, () => ({...initialState}))
 )

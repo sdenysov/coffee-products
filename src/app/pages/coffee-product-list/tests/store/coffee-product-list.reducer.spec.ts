@@ -1,3 +1,4 @@
+import {CoffeeProductListState} from '@@coffee-product-list/models/coffee-product-list-state';
 import {CoffeeProductListReduxFacade} from '@@coffee-product-list/store/coffee-product-list-redux.facade';
 import {COFFEE_PRODUCTS_LIST_STORE_KEY} from '@@coffee-product-list/store/coffee-product-list-store.config';
 import {CoffeeProductListActions} from '@@coffee-product-list/store/coffee-product-list.actions';
@@ -42,6 +43,7 @@ describe('CoffeeProductList', () => {
   const initialStateMock = {
     paginationVisible: false,
     pageProducts: [],
+    totalProducts: [],
     limit: 3,
     pageNumber: 1,
     totalProductsCount: 0
@@ -80,11 +82,11 @@ describe('CoffeeProductList', () => {
   });
 
   it('should set page number and change products depends on page', () => {
-    const testCaseState = {...initialStateMock, limit: 2};
-    const testCase = {pageNumber: 2, products: COFFEE_PRODUCTS_MOCK};
+    const testCaseState: CoffeeProductListState = {...initialStateMock, totalProducts: COFFEE_PRODUCTS_MOCK, limit: 2};
+    const testCase = {pageNumber: 2};
     const testCaseStartItem = (testCase.pageNumber - 1) * testCaseState.limit;
     const testCaseEndItem = testCase.pageNumber * testCaseState.limit;
-    const expectedPageProducts = COFFEE_PRODUCTS_MOCK.slice(testCaseStartItem, testCaseEndItem);
+    const expectedPageProducts = testCaseState.totalProducts.slice(testCaseStartItem, testCaseEndItem);
     const action = CoffeeProductListActions.updateListPageData(testCase);
     const resultState = coffeeProductListReducer(testCaseState, action);
     expect(resultState.pageNumber).toBe(2);
@@ -92,12 +94,18 @@ describe('CoffeeProductList', () => {
   });
 
   it('should update page size and reset page number', () => {
-    const testCaseState = {...initialStateMock, limit: 2, pageNumber: 2};
-    const testCase = {pageSize: 4, products: COFFEE_PRODUCTS_MOCK};
-    const expectedPageProducts = COFFEE_PRODUCTS_MOCK.slice(0, testCase.pageSize);
+    const testCaseState: CoffeeProductListState = {
+      ...initialStateMock,
+      totalProducts: COFFEE_PRODUCTS_MOCK,
+      limit: 2,
+      pageNumber: 2,
+      totalProductsCount: COFFEE_PRODUCTS_MOCK.length
+    };
+    const testCase = {pageSize: 3};
+    const expectedPageProducts = testCaseState.totalProducts.slice(0, testCase.pageSize);
     const action = CoffeeProductListActions.updateListPageSize(testCase);
     const resultState = coffeeProductListReducer(testCaseState, action);
-    expect(resultState.limit).toBe(4);
+    expect(resultState.limit).toBe(3);
     expect(resultState.pageNumber).toBe(1);
     expect(resultState.pageProducts).toEqual(expectedPageProducts);
   });
